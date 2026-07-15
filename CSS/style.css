@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap');
+
+body {
+  font-family: "Noto Serif KR", serif;
+  line-height: 2;
+  color:black ;
+  background-color:rgb(255, 255, 255);
+}
+
+h1 {
+    color: darkslategray;
+    font-size: 50px;
+    padding-bottom: 10px;
+}
+
+h2 {
+    color: darkslategray;
+    font-size: 42px;
+    padding-bottom: 8px;
+}
+
+a {
+    color: #2980b9;
+    text-decoration: none;
+}
+
+.container {
+    padding: 20px;
+    margin: 0 auto;
+}
+
+.trip-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;  
+    border-radius: 8px;           
+    padding: 20px;    
+    margin-bottom: 20px; 
+    
+    /* 그림자 효과 효과 (선택 사항이지만 박스 모델의 입체감을 주기 좋습니다) */
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
+}
+
+table {
+    width: 100%;
+    padding: 10px;
+    border-spacing: 0px;
+    text-align: center;
+}
+
+th, td {
+    border: 1px solid black;
+    padding: 10px;
+}
+
+
+th{
+    background-color: #f8f9fa;
+}
+
+fieldset {
+    border: 1px solid black;
+    border-radius: 4px;
+}
+
+input[type="text"],
+input[type="password"],
+input[type="email"],
+input[type="date"],
+select,
+textarea
+{
+    width: 100%;
+    padding: 6px;
+    border: 1px solid #cccccc;
+    border-radius: 4px;
+    font-family: inherit;
+    font-size: 0.95em;
+
+    box-sizing: border-box;
+}
+
+.btn-submit,
+.btn-reset {
+    padding: 12px 25px;    
+    font-size: 1em;
+    font-weight: bold;
+    border: none;                  
+    border-radius: 4px;             
+    margin-right: 10px;           
+}
+
+.btn-submit {
+    background-color: #16a085;      
+    color: #ffffff;                
+}
+
+.btn-reset {
+    background-color: #bdc3c7;      
+    color: #ffffff;
+}
