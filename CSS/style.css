@@ -1,5 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Noto+Serif+KR:wght@200..900&display=swap');
 
+html {
+    scroll-padding-top: 360px;   
+}
+
 body {
   font-family: "Noto Serif KR", serif;
   line-height: 2;
@@ -16,12 +20,12 @@ header {
     padding: 20px 0 12px;
     text-align: center;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06);
-    z-index: 1000;
+    z-index: 3;
 }
 
 main {
     max-width: 680px;
-    margin: 300px auto 60px; /* 고정 헤더와 겹치지 않도록 상단 여백 160px 확보 */
+    margin: 300px auto 60px;
     padding: 0 20px;
 }
 
@@ -62,7 +66,6 @@ a {
     padding: 20px;    
     margin-bottom: 20px; 
     
-    /* 그림자 효과 효과 (선택 사항이지만 박스 모델의 입체감을 주기 좋습니다) */
     box-shadow: 0 2px 5px rgba(0,0,0,0.05); 
 }
 

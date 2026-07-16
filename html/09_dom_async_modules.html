@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Async · Module 실습</title>
+</head>
+<body>
+    <h1>⏳ 동기 vs 비동기 · 모듈 분리 실습</h1>
+
+    <p>⚠ 이 페이지는 <code>type="module"</code>을 사용하므로 <b>Live Server</b> 또는
+        <code>python -m http.server</code> 로 실행해야 합니다. (더블클릭 시 모듈 오류 발생)</p>
+
+    <h2>상태</h2>
+    <p id="status">대기 중...</p>
+
+    <h2>불러온 메시지</h2>
+    <p id="output">-</p>
+
+    <p>F12를 눌러 콘솔을 열면 동기 코드와 비동기 코드가 어떤 순서로 실행되는지 확인할 수 있습니다.</p>
+
+    <!-- data.js / app.js 로 로직을 분리하고, 여기서는 app.js 하나만 모듈로 불러온다 -->
+    <script type="module" src="../js/app.js"></script>
+
+    <!--
+        TODO 1: js/data.js 의 fetchMessage 지연 시간(delay)을 바꿔 결과 도착 시점을 확인하세요
+        TODO 2: js/data.js 의 messages 배열에 문구를 하나 더 추가해보세요
+    -->
+</body>
+</html>

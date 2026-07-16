@@ -1,0 +1,401 @@
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    scroll-behavior: smooth; 
+    scroll-padding-top: 70px; 
+}
+
+body {
+    font-family: 'Pretendard', 'Noto Sans KR', sans-serif;
+    color: #333333;
+    line-height: 1.6;
+    background-color: #ffffff;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+ul {
+    list-style: none;
+}
+
+.nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 70px;
+    background-color: #ffffff;
+    border-bottom: 1px solid #dddddd;
+    z-index: 100;
+}
+
+.nav-inner {
+    max-width: 1000px;
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.nav-logo {
+    font-size: 20px;
+    font-weight: bold;
+    color: #0077ff;
+}
+
+.nav-links {
+    display: flex;
+    gap: 50px;
+}
+
+.nav-links a {
+    font-weight: bold;
+    color: #555555;
+    font-size: 16px;
+}
+
+.nav-links a:hover {
+    color: #0077ff;
+}
+
+
+header {
+    position: relative;
+    max-width: 1000px;
+    margin: 70px auto 0;
+    height: 450px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    background-color: #000000;
+    overflow: hidden;
+}
+
+
+.hero-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    opacity: 0.65;
+}
+
+header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.6));
+}
+
+.hero-title-text,
+.hero-sub-text {
+    position: relative;
+    z-index: 1; 
+    color: #ffffff;
+    padding: 0 20px;
+}
+
+.hero-title-text {
+    font-size: 40px;
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.hero-sub-text {
+    font-size: 18px;
+}
+
+
+main {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 60px 20px;
+}
+
+section {
+    margin-bottom: 80px;
+}
+
+section h2 {
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 40px;
+    color: #222222;
+}
+
+
+
+#sight {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+}
+
+#sight h2 {
+    grid-column: 1 / -1;
+}
+
+#sight figure {
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    overflow: hidden;
+    margin: 0;
+    background-color: #ffffff;
+}
+
+#sight figure img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+#sight figure:hover img {
+    transform: scale(1.1);
+}
+
+#sight figcaption {
+    padding: 15px;
+}
+
+#sight figcaption span {
+    font-size: 13px;
+    color: #0077ff;
+    font-weight: bold;
+}
+
+#sight figcaption h3 {
+    font-size: 18px;
+    margin: 8px 0;
+}
+
+#sight figcaption p {
+    font-size: 14px;
+    color: #666666;
+}
+
+
+#food {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    align-items: start;
+}
+
+#food h2 {
+    grid-column: 1 / -1;
+}
+
+#food article {
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    background-color: #ffffff;
+}
+
+#food article img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+    margin-bottom: 5px;
+}
+
+#food article h3 {
+    font-size: 20px;
+    margin-bottom: 10px;
+}
+
+#food article p {
+    font-size: 16px;
+    color: #444444;
+}
+
+#food article strong {
+    color: #c05a3c;
+}
+
+.img-slider {
+    position: relative;
+    width: 100%;
+    margin-bottom: 15px;
+    overflow: hidden;
+}
+
+.img-slider img {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+}
+
+.food-text-wrap {
+    overflow: hidden;
+    position: relative;
+}
+
+.food-slide,
+.food-text-slide {
+    transition: transform 0.05s ease;
+    transform: translateX(0);
+}
+
+.food-slide.slide-out-left,
+.food-text-slide.slide-out-left {
+    transform: translateX(-100%);
+}
+
+.food-slide.slide-out-right,
+.food-text-slide.slide-out-right {
+    transform: translateX(100%);
+}
+
+.food-slide.slide-in-prep-left,
+.food-text-slide.slide-in-prep-left {
+    transition: none;
+    transform: translateX(-100%);
+}
+
+.food-slide.slide-in-prep-right,
+.food-text-slide.slide-in-prep-right {
+    transition: none;
+    transform: translateX(100%);
+}
+
+.slider-btn {
+    position: absolute;
+    top: 50%;                  
+    transform: translateY(-50%); 
+    width: 38px;
+    height: 38px;
+    background-color: rgba(255, 255, 255, 0.7); 
+    border: 1px solid #cccccc;
+    border-radius: 50%;        
+    font-size: 16px;
+    font-weight: bold;
+    color: #333333;
+    cursor: pointer;
+    transition: background-color 0.1s, color 0.1s;
+    
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.prev-btn {
+    left: 10px;
+}
+
+.next-btn {
+    right: 10px;
+}
+
+.slider-btn:hover {
+    background-color: #0077ff;
+    color: #ffffff;
+    border-color: #0077ff;
+}
+
+#food aside {
+    height: 433px;
+    background-color: #f8f9fa;
+    border: 1px solid #dddddd;
+    border-radius: 8px;
+    padding: 20px;
+    height: fit-content;
+}
+
+#food aside > p {
+    font-size: 13px;
+    color: #0077ff;
+    font-weight: bold;
+    margin-bottom: 5px;
+}
+
+#food aside h3 {
+    font-size: 18px;
+    margin-bottom: 15px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #cccccc;
+}
+
+#food aside ul {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+#food aside li p:first-child {
+    font-weight: bold;
+    color: #333333;
+    margin-bottom: 3px;
+}
+
+#food aside li p:last-child {
+    font-size: 14px;
+    color: #666666;
+}
+
+  
+#video {
+    text-align: center;
+}
+
+#video video {
+    width: 100%;
+    border-radius: 8px;
+    border: 1px solid #dddddd;
+}
+
+footer {
+    background-color: #ffffff;
+    color: #ffffff;
+    padding: 30px 20px;
+    display: flex;
+    justify-content:center;
+    align-items: center;
+    margin-top: -100px;
+}
+
+footer p {
+    font-size: 14px;
+    color: #cccccc;
+}
+
+.btn-top {
+    background-color: #555555;
+    color: #ffffff;
+    padding: 8px 15px;
+    border-radius: 4px;
+    font-size: 16px;
+}
+
+.btn-top:hover {
+    background-color: #0077ff;
+}
+
+
+@media (max-width: 768px) {
+    #sight,
+    #food {
+        grid-template-columns: 1fr;
+    }
+}

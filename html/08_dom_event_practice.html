@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DOM · Event 실습</title>
+
+    <style>
+        .highlighted {
+            background-color: #fff3cd;
+            color: #c0392b;
+        }
+    </style>
+</head>
+<body>
+    <h1>🖱️ DOM · Event 실습</h1>
+
+    <h2>① 텍스트 변경</h2>
+    <p id="message">원래 문구입니다.</p>
+    <button id="changeTextBtn">텍스트 바꾸기</button>
+
+    <hr>
+
+    <h2>② classList 로 스타일 토글</h2>
+    <p id="toggleBox">이 문단에 강조 스타일을 켜고 끌 수 있습니다.</p>
+    <button id="toggleClassBtn">강조 토글</button>
+
+    <hr>
+
+    <h2>③ 입력값 읽어서 목록 추가/삭제</h2>
+    <input type="text" id="todoInput" placeholder="할 일을 입력하세요">
+    <button id="addBtn">추가</button>
+    <ul id="todoList"></ul>
+
+    <script>
+        // ① DOM=HTML 트리, addEventListener 로 이벤트 연결, textContent 변경
+        const messageEl = document.getElementById("message");
+        const changeTextBtn = document.getElementById("changeTextBtn");
+
+        changeTextBtn.addEventListener("click", () => {
+            messageEl.textContent = "버튼 클릭으로 문구가 바뀌었습니다!";
+        });
+
+        // ② classList 변경
+        const toggleBox = document.getElementById("toggleBox");
+        const toggleClassBtn = document.getElementById("toggleClassBtn");
+
+        toggleClassBtn.addEventListener("click", () => {
+            toggleBox.classList.toggle("highlighted");
+        });
+
+        // ③ 입력값 읽기 → 목록 추가 / 삭제
+        const todoInput = document.getElementById("todoInput");
+        const addBtn = document.getElementById("addBtn");
+        const todoList = document.getElementById("todoList");
+
+        addBtn.addEventListener("click", () => {
+            const value = todoInput.value.trim();
+            if (value === "") {
+                return;
+            }
+
+            const li = document.createElement("li");
+            li.textContent = value;
+
+            const deleteBtn = document.createElement("button");
+            deleteBtn.textContent = "삭제";
+            deleteBtn.addEventListener("click", () => {
+                li.remove();
+            });
+
+            li.appendChild(deleteBtn);
+            todoList.appendChild(li);
+
+            todoInput.value = "";
+        });
+
+        // TODO 1: changeTextBtn 클릭 시 나오는 문구를 원하는 문장으로 바꿔보세요
+        // TODO 2: todoInput 에 값을 입력하고 추가 → 삭제 버튼까지 눌러 동작을 확인하세요
+    </script>
+</body>
+</html>

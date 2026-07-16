@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSS 스타일링 실습</title>
+
+    <style>
+        p {
+            color: #333333;
+        }
+
+        .highlight {
+            color: #c0392b;
+            font-weight: bold;
+        }
+
+        #special {
+            background-color: #fff3cd;
+            padding: 4px 8px;
+        }
+
+        .box {
+            width: 150px;
+            margin: 10px;
+            padding: 15px;
+            border: 3px solid #2980b9;
+            background-color: #eaf2f8;
+            box-sizing: border-box;
+        }
+
+        /* 박스 모델 분해도 : margin은 원래 투명이라 배경색이 안 보이므로,
+           바깥을 다른 배경색 레이어로 한 번 더 감싸서 "마진처럼 보이는 여백"을 만든다 */
+        .box-model-demo {
+            display: inline-block;
+            font-family: inherit;
+        }
+
+        .layer {
+            position: relative;
+        }
+
+        .layer-label {
+            position: absolute;
+            top: 4px;
+            left: 6px;
+            font-size: 11px;
+            font-weight: bold;
+            color: #333333;
+        }
+
+        .margin-layer {
+            background-color: #f9cb9c;
+            padding: 34px 20px 20px;
+        }
+
+        .border-layer {
+            border: 16px solid #ffcc66;
+            background-color: #ffe599;
+            padding: 28px 16px 16px;
+        }
+
+        .padding-layer {
+            /* 여기는 실제 CSS padding 속성을 그대로 사용 */
+            background-color: #b6d7a8;
+            padding: 34px 20px 20px;
+        }
+
+        .content-layer {
+            background-color: #6fa8dc;
+            color: #ffffff;
+            font-weight: bold;
+            text-align: center;
+            padding: 20px 30px;
+            border-radius: 4px;
+        }
+
+        .card-row {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        .card {
+            flex: 1;
+            padding: 20px;
+            border-radius: 8px;
+            background-color: #ffffff;
+            border: 1px solid #dddddd;
+            text-align: center;
+
+            /* ⑤ 애니메이션 (transition) */
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
+        }
+
+        /* ④ 반응형 (Media Query) : 화면이 좁아지면 세로로 쌓기 */
+        @media (max-width: 600px) {
+            .card-row {
+                flex-direction: column;
+            }
+        }
+
+        /* 예시 2 : 넓을 때는 세로 배치, 좁아지면 반대로 가로로 쌓기 */
+        .card-col {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            margin: 20px 0;
+        }
+
+        @media (max-width: 600px) {
+            .card-col {
+                flex-direction: row;
+            }
+        }
+
+        /* 예시 3 : 미디어 쿼리가 없어 화면 폭이 바뀌어도 항상 가로 배치 그대로 (반응형 없음) */
+        .card-static {
+            display: flex;
+            flex-direction: row;
+            gap: 15px;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <h1>🎨 CSS 스타일링 실습</h1>
+    <p>이 페이지를 열고 아래 순서대로 직접 값을 바꿔보며 결과를 확인하세요.</p>
+
+    <hr>
+
+    <h2>① 선택자 (태그 · class · id)</h2>
+    <p>일반 태그 선택자가 적용된 문단입니다.</p>
+    <p class="highlight">class="highlight" 가 적용된 문단입니다.</p>
+    <p id="special">id="special" 이 적용된 문단입니다.</p>
+
+    <hr>
+
+    <h2>② 박스 모델</h2>
+    <div class="box">margin · padding · border 확인용 박스</div>
+
+    <h3>박스 모델 분해도 (margin · border · padding · content)</h3>
+    <p>각 여백이 차지하는 영역을 볼 수 있도록 배경 색으로 감싸 각각의 여백 영역이 비쳐 보이도록 만든 예시입니다.</p>
+
+    <div class="box-model-demo">
+        <div class="layer margin-layer">
+            <span class="layer-label">margin 영역</span>
+            <div class="layer border-layer">
+                <span class="layer-label">border 영역</span>
+                <div class="layer padding-layer">
+                    <span class="layer-label">padding 영역</span>
+                    <div class="content-layer">content 영역</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <hr>
+
+    <h2>③④⑤ Flexbox · 반응형 · 애니메이션</h2>
+
+    <h3>예시 1 · 넓을 때 가로 배치 → 좁아지면 세로로 쌓기</h3>
+    <div class="card-row">
+        <div class="card">카드 1</div>
+        <div class="card">카드 2</div>
+        <div class="card">카드 3</div>
+    </div>
+
+    <h3>예시 2 · 넓을 때 세로 배치 → 좁아지면 가로로 쌓기</h3>
+    <div class="card-col">
+        <div class="card">카드 A</div>
+        <div class="card">카드 B</div>
+        <div class="card">카드 C</div>
+    </div>
+
+    <h3>예시 3 · 반응형 없음 (항상 가로 배치 유지)</h3>
+    <div class="card-static">
+        <div class="card">카드 X</div>
+        <div class="card">카드 Y</div>
+        <div class="card">카드 Z</div>
+    </div>
+</body>
+</html>

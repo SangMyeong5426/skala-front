@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>JavaScript 기초 실습</title>
+
+    <style>
+        section {
+            border: 1px solid #dddddd;
+            border-radius: 8px;
+            padding: 16px 20px;
+            margin-bottom: 20px;
+        }
+
+        pre.code {
+            background-color: #f5f5f5;
+            padding: 10px 14px;
+            border-radius: 4px;
+            overflow-x: auto;
+        }
+
+        .result {
+            font-weight: bold;
+            color: #2980b9;
+            min-height: 1.4em;
+        }
+
+        input[type="text"],
+        input[type="number"] {
+            padding: 4px 6px;
+        }
+    </style>
+</head>
+<body>
+    <h1>🧮 JavaScript 기초 실습</h1>
+    <p>각 섹션의 코드를 먼저 읽어보고, 값을 바꾼 뒤 버튼을 눌러 결과가 어떻게 달라지는지 확인하세요.
+        콘솔(F12)에도 같은 결과가 함께 출력됩니다.</p>
+
+    <section>
+        <h2>① 변수와 자료형 (변수 = 상자)</h2>
+        <pre class="code">let userName = "홍길동";   // let → 재할당 가능
+const age = 25;              // const → 재할당 불가능</pre>
+        <p>
+            이름: <input type="text" id="userNameInput" value="홍길동">
+            (let 이라서 이 값으로 <b>재할당</b>됩니다)
+        </p>
+        <p>
+            나이: <input type="number" id="ageInput" value="25">
+            (const 라서 재할당을 <b>시도해도 에러</b>가 나고 무시됩니다 - 콘솔 확인)
+        </p>
+        <button onclick="runVariables()">값 확인</button>
+        <p class="result" id="result1"></p>
+    </section>
+
+    <section>
+        <h2>② 연산자</h2>
+        <pre class="code">const sum = a + b;
+const product = a * b;
+const isBigger = a >= b;</pre>
+        <p>
+            a: <input type="number" id="opA" value="10">
+            b: <input type="number" id="opB" value="3">
+            <button onclick="runOperators()">연산 실행</button>
+        </p>
+        <p class="result" id="result2"></p>
+    </section>
+
+    <section>
+        <h2>③ 조건문 (if = 판단)</h2>
+        <pre class="code">if (number % 2 === 0) {
+    numberType = "짝수";
+} else {
+    numberType = "홀수";
+}</pre>
+        <p>
+            number: <input type="number" id="numberInput" value="7">
+            <button onclick="runCondition()">판별하기</button>
+        </p>
+        <p class="result" id="result3"></p>
+    </section>
+
+    <section>
+        <h2>④ 반복문 (for = 반복)</h2>
+        <pre class="code">let total = 0;
+for (let i = 1; i <= n; i++) {
+    total += i;
+}</pre>
+        <p>
+            n: <input type="number" id="loopN" value="10">
+            <button onclick="runLoop()">합계 계산</button>
+        </p>
+        <p class="result" id="result4"></p>
+    </section>
+
+    <section>
+        <h2>⑤ 함수 (함수 = 작업 묶음)</h2>
+        <pre class="code">function addTwoNumbers(a, b) {
+    return a + b;
+}</pre>
+        <p>
+            a: <input type="number" id="funcA" value="3">
+            b: <input type="number" id="funcB" value="4">
+            <button onclick="runFunction()">더하기 실행</button>
+        </p>
+        <p class="result" id="result5"></p>
+    </section>
+
+    <section>
+        <h2>⑥ 배열</h2>
+        <pre class="code">const fruits = ["사과", "바나나"];
+fruits.push(newItem);</pre>
+        <p>현재 배열: <span class="result" id="fruitsView">["사과", "바나나"]</span></p>
+        <p>
+            추가할 항목: <input type="text" id="fruitInput" placeholder="예: 딸기">
+            <button onclick="runArrayPush()">배열에 추가</button>
+        </p>
+    </section>
+
+    <section>
+        <h2>⑦ 객체</h2>
+        <pre class="code">const student = { name: "김코딩", score: 90 };</pre>
+        <p>
+            이름: <input type="text" id="studentName" value="김코딩">
+            점수: <input type="number" id="studentScore" value="90">
+            <button onclick="runObject()">객체 값 반영</button>
+        </p>
+        <p class="result" id="result7"></p>
+    </section>
+
+    <script>
+        // ① 변수와 자료형
+        // let / const 는 함수 밖(모듈 스코프)에서 딱 한 번만 선언한다.
+        // → 버튼을 여러 번 눌러도 "새로 선언"하는 게 아니라 같은 변수를 계속 재사용/재할당한다.
+        let userName = "홍길동";
+        const age = 25;
+
+        function runVariables() {
+            // let 은 재할당 가능 → 값이 실제로 바뀐다
+            userName = document.getElementById("userNameInput").value;
+
+            // const 는 재할당 불가능 → 강제로 시도하면 에러가 난다 (여기서 직접 확인)
+            try {
+                age = Number(document.getElementById("ageInput").value);
+            } catch (error) {
+                console.log("⚠ const 재할당 시도 → 에러 발생:", error.message);
+            }
+
+            const text = `userName = "${userName}" (${typeof userName}), age = ${age} (${typeof age}) → age는 const라 항상 25`;
+            document.getElementById("result1").textContent = text;
+            console.log("① 변수:", text);
+        }
+
+        // ② 연산자
+        function runOperators() {
+            const a = Number(document.getElementById("opA").value);
+            const b = Number(document.getElementById("opB").value);
+
+            const sum = a + b;
+            const product = a * b;
+            const isBigger = a >= b;
+
+            const text = `sum = ${sum}, product = ${product}, isBigger = ${isBigger}`;
+            document.getElementById("result2").textContent = text;
+            console.log("② 연산자:", text);
+        }
+
+        // ③ 조건문
+        function runCondition() {
+            const number = Number(document.getElementById("numberInput").value);
+            let numberType;
+
+            if (number % 2 === 0) {
+                numberType = "짝수";
+            } else {
+                numberType = "홀수";
+            }
+
+            const text = `${number}은(는) ${numberType}입니다.`;
+            document.getElementById("result3").textContent = text;
+            console.log("③ 조건문:", text);
+        }
+
+        // ④ 반복문
+        function runLoop() {
+            const n = Number(document.getElementById("loopN").value);
+            let total = 0;
+
+            for (let i = 1; i <= n; i++) {
+                total += i;
+            }
+
+            const text = `1부터 ${n}까지의 합 = ${total}`;
+            document.getElementById("result4").textContent = text;
+            console.log("④ 반복문:", text);
+        }
+
+        // ⑤ 함수
+        function addTwoNumbers(a, b) {
+            return a + b;
+        }
+
+        function runFunction() {
+            const a = Number(document.getElementById("funcA").value);
+            const b = Number(document.getElementById("funcB").value);
+            const result = addTwoNumbers(a, b);
+
+            const text = `addTwoNumbers(${a}, ${b}) = ${result}`;
+            document.getElementById("result5").textContent = text;
+            console.log("⑤ 함수:", text);
+        }
+
+        // ⑥ 배열 (버튼을 누를 때마다 실제로 배열이 쌓여가는 걸 눈으로 확인)
+        const fruits = ["사과", "바나나"];
+
+        function renderFruits() {
+            document.getElementById("fruitsView").textContent = `[${fruits.map(f => `"${f}"`).join(", ")}]`;
+        }
+
+        function runArrayPush() {
+            const input = document.getElementById("fruitInput");
+            const value = input.value.trim();
+
+            if (value === "") {
+                return;
+            }
+
+            fruits.push(value);
+            renderFruits();
+            console.log("⑥ 배열:", fruits);
+
+            input.value = "";
+        }
+
+        renderFruits();
+
+        // ⑦ 객체
+        const student = { name: "김코딩", score: 90 };
+
+        function runObject() {
+            student.name = document.getElementById("studentName").value;
+            student.score = Number(document.getElementById("studentScore").value);
+
+            const text = `${student.name}의 점수는 ${student.score}점입니다.`;
+            document.getElementById("result7").textContent = text;
+            console.log("⑦ 객체:", student);
+        }
+    </script>
+</body>
+</html>
