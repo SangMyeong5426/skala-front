@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wrap-up Quiz</title>
+
+    <style>
+        .option {
+            display: block;
+            width: 100%;
+            text-align: left;
+            padding: 10px;
+            margin: 6px 0;
+            border: 1px solid #cccccc;
+            border-radius: 4px;
+            background-color: #ffffff;
+            cursor: pointer;
+        }
+
+        .option:hover {
+            background-color: #f2f2f2;
+        }
+
+        .option.correct {
+            background-color: #d4edda;
+            border-color: #28a745;
+        }
+
+        .option.wrong {
+            background-color: #f8d7da;
+            border-color: #dc3545;
+        }
+    </style>
+</head>
+<body>
+    <h1>HTML · CSS · JS Wrap-up Quiz</h1>
+
+    <p id="progress">문제 1 / 5</p>
+    <h2 id="questionText"></h2>
+    <div id="optionsBox"></div>
+
+    <p id="resultBox"></p>
+    <button id="restartBtn" style="display:none;">다시 풀기</button>
+
+    <script>
+        const quizList = [
+            {
+                question: "HTML에서 화면에 보이지 않는 메타 정보를 담는 태그는?",
+                options: ["<body>", "<head>", "<footer>", "<main>"],
+                answerIndex: 1
+            },
+            {
+                question: "CSS에서 요소 사이의 바깥 여백을 지정하는 속성은?",
+                options: ["padding", "border", "margin", "gap"],
+                answerIndex: 2
+            },
+            {
+                question: "Flexbox에서 방향을 세로로 바꾸는 속성값은?",
+                options: ["flex-direction: row", "flex-direction: column", "display: grid", "position: fixed"],
+                answerIndex: 1
+            },
+            {
+                question: "JavaScript에서 요소의 텍스트를 바꿀 때 사용하는 것은?",
+                options: ["element.href", "element.textContent", "element.src", "element.type"],
+                answerIndex: 1
+            },
+            {
+                question: "이벤트를 연결할 때 사용하는 JavaScript 메서드는?",
+                options: ["addEventListener", "querySelector", "getElementById", "createElement"],
+                answerIndex: 0
+            },
+            {
+                question: "HTML에서 하이퍼링크를 만드는 태그는?",
+                options: ["<a>", "<link>", "<img>", "<nav>"],
+                answerIndex: 0
+            },
+            {
+                question: "CSS에서 요소를 화면에서 완전히 제거(공간까지 차지 안 함)하는 속성은?",
+                options: ["opacity: 0", "visibility: hidden", "display: none", "position: absolute"],
+                answerIndex: 2
+            },
+            {
+                question: "JavaScript에서 배열의 각 요소를 순회할 때 사용하는 메서드는?",
+                options: ["forEach", "toString", "JSON.stringify", "parseInt"],
+                answerIndex: 0
+            },
+            {
+                question: "Flexbox에서 주축(main axis) 방향 정렬을 담당하는 속성은?",
+                options: ["align-items", "justify-content", "flex-wrap", "gap"],
+                answerIndex: 1
+            },
+            {
+                question: "JavaScript에서 비동기 작업의 결과를 나타내는 객체는?",
+                options: ["Array", "Promise", "Map", "Set"],
+                answerIndex: 1
+            },
+            {
+                question: "CSS에서 요소의 안쪽 여백을 지정하는 속성은?",
+                options: ["margin", "padding", "border", "gap"],
+                answerIndex: 1
+            },
+            {
+                question: "HTML에서 순서 없는 목록을 만드는 태그는?",
+                options: ["<ol>", "<ul>", "<li>", "<dl>"],
+                answerIndex: 1
+            },
+            {
+                question: "CSS에서 요소의 모서리를 둥글게 만드는 속성은?",
+                options: ["border-radius", "border-style", "outline", "box-shadow"],
+                answerIndex: 0
+            },
+            {
+                question: "JavaScript에서 조건이 참인 동안 반복 실행하는 반복문은?",
+                options: ["if", "switch", "while", "try"],
+                answerIndex: 2
+            },
+            {
+                question: "CSS Grid에서 열(column) 구조를 정의하는 속성은?",
+                options: ["grid-template-columns", "flex-direction", "grid-gap", "align-content"],
+                answerIndex: 0
+            },
+            {
+                question: "JavaScript에서 CSS 선택자 문법을 그대로 사용해 요소를 선택하는 메서드는?",
+                options: ["getElementById", "querySelector", "getElementsByClassName", "getElementsByTagName"],
+                answerIndex: 1
+            },
+            {
+                question: "다음 중 HTML5 시맨틱 태그가 아닌 것은?",
+                options: ["<header>", "<section>", "<div>", "<footer>"],
+                answerIndex: 2
+            },
+            {
+                question: "CSS position 값 중 가장 가까운 relative 조상을 기준으로 배치되는 것은?",
+                options: ["static", "relative", "absolute", "fixed"],
+                answerIndex: 2
+            },
+            {
+                question: "JavaScript에서 배열 맨 뒤에 새 요소를 추가하는 메서드는?",
+                options: ["push", "pop", "shift", "unshift"],
+                answerIndex: 0
+            },
+            {
+                question: "JavaScript Promise에서 성공 결과를 처리할 때 사용하는 메서드는?",
+                options: [".catch()", ".then()", ".finally()", ".resolve()"],
+                answerIndex: 1
+            }
+        ];
+
+        const QUESTIONS_PER_ROUND = 5;
+
+        function pickRandomQuestions(pool, count) {
+            const shuffled = [...pool];
+            for (let i = shuffled.length - 1; i > 0; i--) {
+                const j = Math.floor(Math.random() * (i + 1));
+                [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+            }
+            return shuffled.slice(0, count);
+        }
+
+        let activeQuizList = pickRandomQuestions(quizList, QUESTIONS_PER_ROUND);
+        let currentIndex = 0;
+        let score = 0;
+
+        const progressEl = document.getElementById("progress");
+        const questionEl = document.getElementById("questionText");
+        const optionsBox = document.getElementById("optionsBox");
+        const resultBox = document.getElementById("resultBox");
+        const restartBtn = document.getElementById("restartBtn");
+
+        function renderQuestion() {
+            const current = activeQuizList[currentIndex];
+            progressEl.textContent = `문제 ${currentIndex + 1} / ${activeQuizList.length}`;
+            questionEl.textContent = current.question;
+            resultBox.textContent = "";
+            optionsBox.innerHTML = "";
+
+            current.options.forEach((optionText, index) => {
+                const btn = document.createElement("button");
+                btn.className = "option";
+                btn.textContent = optionText;
+                btn.addEventListener("click", () => selectAnswer(index, btn));
+                optionsBox.appendChild(btn);
+            });
+        }
+
+        function selectAnswer(selectedIndex, selectedBtn) {
+            const current = activeQuizList[currentIndex];
+            const allOptionBtns = optionsBox.querySelectorAll(".option");
+
+            allOptionBtns.forEach(btn => btn.disabled = true);
+
+            if (selectedIndex === current.answerIndex) {
+                selectedBtn.classList.add("correct");
+                resultBox.textContent = "정답입니다! ✅";
+                score++;
+            } else {
+                selectedBtn.classList.add("wrong");
+                allOptionBtns[current.answerIndex].classList.add("correct");
+                resultBox.textContent = "오답입니다. ❌";
+            }
+
+            setTimeout(goNext, 900);
+        }
+
+        function goNext() {
+            currentIndex++;
+            if (currentIndex < activeQuizList.length) {
+                renderQuestion();
+            } else {
+                showFinalScore();
+            }
+        }
+
+        function showFinalScore() {
+            progressEl.textContent = "퀴즈 종료";
+            questionEl.textContent = `총 ${activeQuizList.length}문제 중 ${score}문제를 맞혔습니다.`;
+            optionsBox.innerHTML = "";
+            resultBox.textContent = "";
+            restartBtn.style.display = "inline-block";
+        }
+
+        restartBtn.addEventListener("click", () => {
+            activeQuizList = pickRandomQuestions(quizList, QUESTIONS_PER_ROUND);
+            currentIndex = 0;
+            score = 0;
+            restartBtn.style.display = "none";
+            renderQuestion();
+        });
+
+        renderQuestion();
+    </script>
+</body>
+</html>

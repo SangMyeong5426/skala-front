@@ -29,8 +29,6 @@
             box-sizing: border-box;
         }
 
-        /* 박스 모델 분해도 : margin은 원래 투명이라 배경색이 안 보이므로,
-           바깥을 다른 배경색 레이어로 한 번 더 감싸서 "마진처럼 보이는 여백"을 만든다 */
         .box-model-demo {
             display: inline-block;
             font-family: inherit;
@@ -61,7 +59,6 @@
         }
 
         .padding-layer {
-            /* 여기는 실제 CSS padding 속성을 그대로 사용 */
             background-color: #b6d7a8;
             padding: 34px 20px 20px;
         }
@@ -90,7 +87,6 @@
             border: 1px solid #dddddd;
             text-align: center;
 
-            /* ⑤ 애니메이션 (transition) */
             transition: transform 0.25s ease, box-shadow 0.25s ease;
         }
 
@@ -99,14 +95,12 @@
             box-shadow: 0 6px 14px rgba(0, 0, 0, 0.15);
         }
 
-        /* ④ 반응형 (Media Query) : 화면이 좁아지면 세로로 쌓기 */
         @media (max-width: 600px) {
             .card-row {
                 flex-direction: column;
             }
         }
 
-        /* 예시 2 : 넓을 때는 세로 배치, 좁아지면 반대로 가로로 쌓기 */
         .card-col {
             display: flex;
             flex-direction: column;
@@ -120,7 +114,6 @@
             }
         }
 
-        /* 예시 3 : 미디어 쿼리가 없어 화면 폭이 바뀌어도 항상 가로 배치 그대로 (반응형 없음) */
         .card-static {
             display: flex;
             flex-direction: row;

@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>SKALA GAMES - 게임 판매 플랫폼</title>
+    <link rel="stylesheet" href="../../CSS/style_productGallery.css">
+</head>
+<body>
+    <header class="topbar">
+        <span class="logo">🎮 SKALA GAMES</span>
+        <div class="topbar-right">
+            <div class="cart-wrap">
+                <button id="cartBtn" aria-label="장바구니 열기">
+                    🛒
+                    <span id="cartCount" class="cart-count" hidden>0</span>
+                </button>
+
+                <div id="cartPanel" class="cart-panel" hidden>
+                    <h3 class="cart-title">장바구니</h3>
+                    <ul id="cartList" class="cart-list"></ul>
+                    <p id="cartEmpty" class="cart-empty">담긴 게임이 없습니다.</p>
+                    <div class="cart-footer">
+                        <span>합계</span>
+                        <strong id="cartTotal">0원</strong>
+                    </div>
+                    <button id="checkoutBtn" class="checkout-btn" disabled>구매하기</button>
+                </div>
+            </div>
+
+            <button id="darkModeBtn" aria-label="다크모드 전환">🌙</button>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1 class="hero-title">이번 주 인기 게임</h1>
+        <p class="hero-subtitle">지금 가장 뜨거운 타이틀을 특가로 만나보세요</p>
+    </section>
+
+    <main class="product-grid">
+        <article class="product-card" data-name="데이브 더 다이버" data-price="24000">
+            <img class="product-thumb" src="../../media/dave_the_diver.jpg" alt="데이브 더 다이버 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">어드벤처 · RPG</span>
+                <h3 class="product-name">데이브 더 다이버</h3>
+                <p class="product-price">24,000원</p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+
+        <article class="product-card" data-name="붉은 사막" data-price="79800">
+            <img class="product-thumb" src="../../media/crimson_desert.jpg" alt="붉은 사막 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">오픈월드 · 액션</span>
+                <h3 class="product-name">붉은 사막</h3>
+                <p class="product-price">79,800원</p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+
+        <article class="product-card" data-name="팰월드" data-price="22400" data-original-price="32000" data-discount="30">
+            <img class="product-thumb" src="../../media/palworld.jpg" alt="팰월드 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">오픈월드 · 서바이벌</span>
+                <h3 class="product-name">팰월드</h3>
+                <p class="product-price">
+                    <span class="discount-rate">-30%</span>
+                    <del class="original-price">32,000원</del>
+                    22,400원
+                </p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+
+        <article class="product-card" data-name="레드 데드 리뎀션 2" data-price="18250" data-original-price="73000" data-discount="75">
+            <img class="product-thumb" src="../../media/red_dead_redemption.jpg" alt="레드 데드 리뎀션 2 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">오픈월드 · 액션 어드벤처</span>
+                <h3 class="product-name">레드 데드 리뎀션 2</h3>
+                <p class="product-price">
+                    <span class="discount-rate">-75%</span>
+                    <del class="original-price">73,000원</del>
+                    18,250원
+                </p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+
+        <article class="product-card" data-name="슬레이 더 스파이어 2" data-price="27000">
+            <img class="product-thumb" src="../../media/slay_the_spire2.jpg" alt="슬레이 더 스파이어 2 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">덱빌딩 · 로그라이크</span>
+                <h3 class="product-name">슬레이 더 스파이어 2</h3>
+                <p class="product-price">27,000원</p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+
+        <article class="product-card" data-name="할로우 나이트: 실크송" data-price="21500">
+            <img class="product-thumb" src="../../media/hollowknight_silksong.jpg" alt="할로우 나이트: 실크송 대표 이미지" />
+            <div class="product-body">
+                <span class="product-genre">메트로배니아 · 액션</span>
+                <h3 class="product-name">할로우 나이트: 실크송</h3>
+                <p class="product-price">21,500원</p>
+                <button type="button" class="add-btn">장바구니 담기</button>
+            </div>
+        </article>
+    </main>
+
+    <button id="topBtn" class="top-btn" aria-label="맨 위로 이동">↑</button>
+
+    <dialog id="purchaseDialog" class="purchase-dialog">
+        <div class="purchase-icon">🎉</div>
+        <h3 class="purchase-title">구매가 완료되었습니다!</h3>
+        <ul id="purchaseList" class="purchase-list"></ul>
+        <div class="purchase-footer">
+            <span>결제 금액</span>
+            <strong id="purchaseTotal">0원</strong>
+        </div>
+        <form method="dialog">
+            <button class="purchase-confirm-btn">확인</button>
+        </form>
+    </dialog>
+
+    <script>
+        const darkModeBtn = document.getElementById("darkModeBtn");
+
+            darkModeBtn.addEventListener("click", () => {
+            document.body.classList.toggle("dark");
+            darkModeBtn.textContent = document.body.classList.contains("dark") ? "☀️" : "🌙";
+        });
+
+        const cart = [];
+
+        const cartBtn = document.getElementById("cartBtn");
+        const cartPanel = document.getElementById("cartPanel");
+        const cartCount = document.getElementById("cartCount");
+        const cartList = document.getElementById("cartList");
+        const cartEmpty = document.getElementById("cartEmpty");
+        const cartTotal = document.getElementById("cartTotal");
+        const checkoutBtn = document.getElementById("checkoutBtn");
+
+        cartBtn.addEventListener("click", (e) => {
+            e.stopPropagation();
+            cartPanel.hidden = !cartPanel.hidden;
+        });
+
+        cartPanel.addEventListener("click", (e) => e.stopPropagation());
+        document.addEventListener("click", () => {
+            cartPanel.hidden = true;
+        });
+
+        const topBtn = document.getElementById("topBtn");
+
+            window.addEventListener("scroll", () => {
+            topBtn.classList.toggle("show", window.scrollY > 300);
+        });
+
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+
+        const purchaseDialog = document.getElementById("purchaseDialog");
+        const purchaseList = document.getElementById("purchaseList");
+        const purchaseTotal = document.getElementById("purchaseTotal");
+
+        checkoutBtn.addEventListener("click", () => {
+            if (cart.length === 0) return;
+
+            purchaseList.innerHTML = cart.map(item => `
+                <li>
+                    <span>${item.name} × ${item.qty}</span>
+                    <span>${(item.price * item.qty).toLocaleString()}원</span>
+                </li>
+            `).join("");
+            purchaseTotal.textContent = cartTotal.textContent;
+
+            cart.length = 0;
+            renderCart();
+            cartPanel.hidden = true;
+            purchaseDialog.showModal();
+        });
+
+        document.querySelectorAll(".product-card").forEach(card => {
+            card.querySelector(".add-btn").addEventListener("click", () => {
+                const name = card.dataset.name;
+                const price = Number(card.dataset.price);
+                const originalPrice = Number(card.dataset.originalPrice || 0); // 할인 없는 상품은 0
+                const discount = Number(card.dataset.discount || 0);
+                const img = card.querySelector(".product-thumb").src;
+
+                const existing = cart.find(item => item.name === name);
+                if (existing) {
+                    existing.qty++;
+                } else {
+                    cart.push({ name, price, originalPrice, discount, img, qty: 1 });
+                }
+                renderCart();
+                flyToCart(card);
+            });
+        });
+
+        function flyToCart(card) {
+            const thumb = card.querySelector(".product-thumb");
+            const start = thumb.getBoundingClientRect();
+            const end = cartBtn.getBoundingClientRect();
+
+            const clone = thumb.cloneNode();
+            clone.className = "fly-img";
+            clone.style.left = start.left + "px";
+            clone.style.top = start.top + "px";
+            clone.style.width = start.width + "px";
+            clone.style.height = start.height + "px";
+            document.body.appendChild(clone);
+
+            const dx = (end.left + end.width / 2) - (start.left + start.width / 2);
+            const dy = (end.top + end.height / 2) - (start.top + start.height / 2);
+
+            void clone.offsetWidth;
+            clone.style.transform = `translate(${dx}px, ${dy}px) scale(0.08)`;
+            clone.style.opacity = "0.4";
+
+            const finish = () => {
+                if (!clone.isConnected) return; 
+                clone.remove();
+                cartBtn.classList.remove("cart-bump");
+                void cartBtn.offsetWidth; 
+                cartBtn.classList.add("cart-bump");
+            };
+            clone.addEventListener("transitionend", finish, { once: true });
+            setTimeout(finish, 800); 
+        }
+
+        function removeItem(name) {
+            const idx = cart.findIndex(item => item.name === name);
+            if (idx !== -1) cart.splice(idx, 1);
+            renderCart();
+        }
+
+        function renderCart() {
+            cartList.innerHTML = "";
+
+            let totalQty = 0;
+            let totalPrice = 0;
+
+            cart.forEach(item => {
+                totalQty += item.qty;
+                totalPrice += item.price * item.qty;
+
+                const discountHTML = item.discount > 0
+                    ? `<span class="discount-rate">-${item.discount}%</span>
+                       <del class="original-price">${item.originalPrice.toLocaleString()}원</del> `
+                    : "";
+
+                const li = document.createElement("li");
+                li.className = "cart-item";
+                li.innerHTML = `
+                    <img src="${item.img}" alt="${item.name}" class="cart-item-img" />
+                    <div class="cart-item-info">
+                        <span class="cart-item-name">${item.name}</span>
+                        <span class="cart-item-price">${discountHTML}${item.price.toLocaleString()}원 × ${item.qty}</span>
+                    </div>
+                    <button class="cart-item-remove" aria-label="${item.name} 삭제">✕</button>
+                `;
+                li.querySelector(".cart-item-remove").addEventListener("click", () => removeItem(item.name));
+                cartList.appendChild(li);
+            });
+
+            cartCount.textContent = totalQty;
+            cartCount.hidden = totalQty === 0;
+
+            cartEmpty.hidden = cart.length !== 0;
+            cartTotal.textContent = totalPrice.toLocaleString() + "원";
+            checkoutBtn.disabled = cart.length === 0;
+        }
+    </script>
+</body>
+</html>

@@ -1,4 +1,3 @@
-// 모듈 분리 실습 : 화면(DOM) 업데이트를 담당하는 파일
 import { fetchMessage } from "./data.js";
 
 const statusEl = document.getElementById("status");

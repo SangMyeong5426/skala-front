@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>인터랙티브 할 일 관리</title>
+    <link rel="stylesheet" href="../../CSS/style_todoApp.css">
+</head>
+<body>
+    <main class="todo-app">
+        <header class="todo-header">
+            <h1>오늘의 할 일</h1>
+        </header>
+
+        <section class="calendar">
+            <div class="calendar-nav">
+                <button type="button" id="prevMonth" aria-label="이전 달">&#10094;</button>
+                <h2 id="calTitle"></h2>
+                <button type="button" id="nextMonth" aria-label="다음 달">&#10095;</button>
+            </div>
+            <div class="calendar-weekdays">
+                <span>일</span><span>월</span><span>화</span><span>수</span><span>목</span><span>금</span><span>토</span>
+            </div>
+            <div id="calGrid" class="calendar-grid"></div>
+        </section>
+
+        <h2 id="dateTitle" class="date-title"></h2>
+
+        <form id="todoForm" class="todo-form">
+            <input id="todoInput" type="text" placeholder="할 일을 입력하세요" autocomplete="off" />
+            <button type="submit">추가</button>
+        </form>
+
+        <div class="filters">
+            <button type="button" class="filter-btn active" data-filter="all">전체</button>
+            <button type="button" class="filter-btn" data-filter="active">진행중</button>
+            <button type="button" class="filter-btn" data-filter="done">완료</button>
+        </div>
+
+        <ul id="todoList" class="todo-list"></ul>
+        <p id="emptyMsg" class="empty">표시할 할 일이 없습니다.</p>
+
+        <footer id="summary" class="todo-summary"></footer>
+    </main>
+
+    <script type="module" src="../../js/todo/app.js"></script>
+</body>
+</html>
