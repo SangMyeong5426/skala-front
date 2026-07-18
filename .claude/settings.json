@@ -1,0 +1,28 @@
+{
+  "permissions": {
+    "allow": [
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_test2.ps1\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_topbtn.ps1\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_footer.ps1\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_footer2.ps1\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_check.ps1\")",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_hover.ps1\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/01_signUp.html)",
+      "Bash(echo \"01_signUp.html: $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/01_signUp.html\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/01_signUpResult.html)",
+      "Bash(echo \"01_signUpResult.html: $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/01_signUpResult.html\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/02_tripDestIntro.html)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_todo2.ps1\")",
+      "Bash(curl -s -o /dev/null -w \"feedback.json: %{http_code}\\\\n\" http://localhost:8811/js/todo/feedback.json)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_feedback.ps1\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/01_signUp.html)",
+      "Bash(echo \"signUp: $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/01_signUp.html\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/../../../../CSS/style_signUp.css)",
+      "Bash(echo \"signUp CSS: $\\(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/../../../../CSS/style_signUp.css\\)\")",
+      "Bash(curl -s -o /dev/null -w '%{http_code}' http://localhost:8811/html/HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/01_signUpResult.html)",
+      "PowerShell(powershell -NoProfile -ExecutionPolicy Bypass -File \"C:\\\\Users\\\\USER\\\\AppData\\\\Local\\\\Temp\\\\claude\\\\c--Users-USER-practice-skala-front\\\\e456abfb-f2e8-4a9b-b588-c01070dfd337\\\\scratchpad\\\\cdp_practice.ps1\")",
+      "Bash(mkdir -p HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/screenshots HTML_CSS_JS_DAY_1/Comprehensive_Practice/02_tripDestIntro/screenshots HTML_CSS_JS_DAY_2/Comprehensive_Practice/01_product_gallery/screenshots HTML_CSS_JS_DAY_2/Comprehensive_Practice/02_todo_app/screenshots)",
+      "Bash(touch HTML_CSS_JS_DAY_1/Comprehensive_Practice/01_signUp/screenshots/.gitkeep HTML_CSS_JS_DAY_1/Comprehensive_Practice/02_tripDestIntro/screenshots/.gitkeep HTML_CSS_JS_DAY_2/Comprehensive_Practice/01_product_gallery/screenshots/.gitkeep HTML_CSS_JS_DAY_2/Comprehensive_Practice/02_todo_app/screenshots/.gitkeep)"
+    ]
+  }
+}

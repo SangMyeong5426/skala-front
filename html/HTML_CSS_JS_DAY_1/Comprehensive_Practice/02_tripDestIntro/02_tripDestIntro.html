@@ -4,13 +4,13 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>환상의 섬, 제주도 여행 가이드</title>
-    <link rel="stylesheet" href="../../CSS/style_tripIntro.css">
+    <link rel="stylesheet" href="../../../../CSS/style_tripIntro.css">
 </head>
 
 <body>
 
     <header>
-        <img class="hero-img" src="../../media/jeju_hero_img.jpg" alt="제주도 전경"/>
+        <img class="hero-img" src="../../../../media/jeju_hero_img.jpg" alt="제주도 전경"/>
         
         <h1 class="hero-title-text">환상의 섬, 제주도</h1>
         <p class="hero-sub-text">푸른 바다와 신비로운 자연이 숨쉬는 곳으로 떠나보세요.</p>
@@ -31,7 +31,7 @@
         <section id="sight">
             <h2>명소 사진관</h2>
             <figure>
-                <img src="../../media/sungsan.jpg" alt="성산일출봉의 전경" />
+                <img src="../../../../media/sungsan.jpg" alt="성산일출봉의 전경" />
                 <figcaption >
                     <span>UNESCO 세계자연유산</span>
                     <h3>성산일출봉</h3>
@@ -40,7 +40,7 @@
             </figure>
 
             <figure class="gallery-card">
-                <img src="../../media/hupje.jpg" alt="협재 해수욕장의 전경" />
+                <img src="../../../../media/hupje.jpg" alt="협재 해수욕장의 전경" />
                 <figcaption>
                     <span>제주 서부 대표 해변</span>
                     <h3>협재 해수욕장</h3>
@@ -49,7 +49,7 @@
             </figure>
 
             <figure class="gallery-card">
-                <img src="../../media/subjicoji.jpg" alt="푸른 초원이 펼쳐진 제주 섭지코지" />
+                <img src="../../../../media/subjicoji.jpg" alt="푸른 초원이 펼쳐진 제주 섭지코지" />
                 <figcaption>
                     <span>드라마 촬영지</span>
                     <h3>섭지코지</h3>
@@ -62,7 +62,7 @@
             <h2>제주의 대표의 맛</h2>
                 <article>
                     <div class="img-slider">
-                        <img id="food-img" class="food-slide" src="../../media/blackpig.jpg" alt="제주 흑돼지 구이" />
+                        <img id="food-img" class="food-slide" src="../../../../media/blackpig.jpg" alt="제주 흑돼지 구이" />
 
                         <button class="slider-btn prev-btn" onclick="prevFood()">&#10094;</button>
                         <button class="slider-btn next-btn" onclick="nextFood()">&#10095;</button>
@@ -99,33 +99,37 @@
 
         <section id="video">
             <h2>영상으로 만나는  제주의 순간</h2>
-            <video controls poster="../../media/jejuposter.jpg">
-                <source src="../../media/jeju_video.mp4" type="video/mp4">
+            <video controls poster="../../../../media/jejuposter.jpg">
+                <source src="../../../../media/jeju_video.mp4" type="video/mp4">
             </video>
         </section>
     </main>
 
-    <footer>
-        <a href="#top" class="btn-top">↑ 맨 위로</a>
+    <footer class="site-footer">
+        <p class="footer-brand">🌴 JEJU TRAVEL</p>
+        <p class="footer-note">이 페이지는 SKALA 프론트엔드 과정 실습으로 제작되었습니다.</p>
+        <p>&copy; 2026 박상명. All rights reserved.</p>
     </footer>
+
+    <button id="topBtn" class="top-btn" aria-label="맨 위로 이동">↑</button>
 
     <script>
         // 1. 제주 대표 음식 3가지의 정보 목록 (배열)
         const foodList = [
             {
-                img: "../../media/blackpig.jpg",
+                img: "../../../../media/blackpig.jpg",
                 alt: "제주 흑돼지 구이",
                 title: "제주 대표 음식, 흑돼지 구이",
                 desc: "육즙이 풍부하고 고소한 맛이 일품인 <strong>제주 흑돼지 구이</strong>를 맛보세요."
             },
             {
-                img: "../../media/galchi.jpg",
+                img: "../../../../media/galchi.jpg",
                 alt: "제주 통갈치 조림",
                 title: "밥도둑의 정석, 통갈치 조림",
                 desc: "매콤달콤한 양념과 부드러운 갈치 살이 어우러진 <strong>제주 통갈치 조림</strong>입니다."
             },
             {
-                img: "../../media/rice_porridge.jpg",
+                img: "../../../../media/rice_porridge.jpg",
                 alt: "제주 전복죽",
                 title: "진하고 고소한 전복죽",
                 desc: "신선한 전복 내장이 듬뿍 들어가 원기 회복에 최고인 <strong>제주 전복죽</strong>입니다."
@@ -197,6 +201,16 @@
             }
             updateFood(1); // 바뀐 번호의 정보로 화면 새로고침
         }
+
+        const topBtn = document.getElementById("topBtn");
+
+        window.addEventListener("scroll", () => {
+            topBtn.classList.toggle("show", window.scrollY > 300);
+        });
+
+        topBtn.addEventListener("click", () => {
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
     </script>
 
     </body>

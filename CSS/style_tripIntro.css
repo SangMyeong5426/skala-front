@@ -365,31 +365,55 @@ section h2 {
     border: 1px solid #dddddd;
 }
 
-footer {
-    background-color: #ffffff;
-    color: #ffffff;
-    padding: 30px 20px;
-    display: flex;
-    justify-content:center;
-    align-items: center;
-    margin-top: -100px;
-}
-
-footer p {
-    font-size: 14px;
+.site-footer {
+    background-color: #1a1a1a;
     color: #cccccc;
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
 }
 
-.btn-top {
-    background-color: #555555;
+.site-footer .footer-brand {
     color: #ffffff;
-    padding: 8px 15px;
-    border-radius: 4px;
     font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
 }
 
-.btn-top:hover {
+.site-footer .footer-note {
+    margin-bottom: 8px;
+}
+
+.top-btn {
+    position: fixed;
+    right: 24px;
+    bottom: 24px;
+    z-index: 50;
+    width: 48px;
+    height: 48px;
+    border: 1px solid #dddddd;
+    border-radius: 999px;
+    background-color: #ffffff;
+    color: #333333;
+    font-size: 1.2rem;
+    font-weight: 700;
+    cursor: pointer;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.15);
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(8px);
+    transition: opacity 0.25s ease, transform 0.25s ease, visibility 0.25s;
+}
+
+.top-btn.show {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
+}
+
+.top-btn:hover {
     background-color: #0077ff;
+    color: #ffffff;
 }
 
 

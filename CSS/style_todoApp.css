@@ -5,6 +5,7 @@
     --color-text-muted: #6b7280;
     --color-primary: #4f46e5;
     --color-accent: #ec4899;
+    --color-saturday: #2563eb;
     --color-border: #e5e7eb;
     --shadow-color: rgba(15, 23, 42, 0.10);
 }
@@ -19,19 +20,19 @@ body {
     background-color: var(--color-bg);
     color: var(--color-text);
     display: flex;
-    justify-content: center;
-    padding: 48px 16px;
+    flex-direction: column;
+    align-items: center;
     min-height: 100vh;
 }
 
 .todo-app {
-    width: min(480px, 100%);
+    width: min(480px, calc(100% - 32px));
+    margin: 48px 0;
     background-color: var(--color-surface);
     border: 1px solid var(--color-border);
     border-radius: 16px;
     padding: 28px 24px;
     box-shadow: 0 16px 32px var(--shadow-color);
-    align-self: flex-start;
 }
 
 .todo-header h1 {
@@ -82,6 +83,10 @@ body {
     color: var(--color-accent);
 }
 
+.calendar-weekdays span:last-child {
+    color: var(--color-saturday);
+}
+
 .calendar-grid {
     display: grid;
     grid-template-columns: repeat(7, 1fr);
@@ -114,24 +119,17 @@ body {
     font-weight: 700;
 }
 
-.day.holiday {
+.day.sunday {
     color: var(--color-accent);
-    font-weight: 600;
 }
 
-.day.holiday.selected {
-    color: #ffffff;
+.day.saturday {
+    color: var(--color-saturday);
 }
 
-.holiday-name {
-    margin-left: 8px;
-    padding: 2px 8px;
-    border-radius: 999px;
-    background-color: var(--color-accent);
+.day.sunday.selected,
+.day.saturday.selected {
     color: #ffffff;
-    font-size: 0.7rem;
-    font-weight: 600;
-    vertical-align: middle;
 }
 
 .day-count {
@@ -154,6 +152,13 @@ body {
 .date-title {
     margin: 0 0 12px;
     font-size: 1.05rem;
+}
+
+.feedback-msg {
+    margin: 0 0 16px;
+    font-size: 0.88rem;
+    font-weight: 600;
+    color: var(--color-primary);
 }
 
 .todo-form {
@@ -210,6 +215,21 @@ body {
     font-weight: 600;
 }
 
+.filter-count {
+    display: inline-block;
+    min-width: 16px;
+    padding: 0 4px;
+    border-radius: 999px;
+    background-color: rgba(0, 0, 0, 0.08);
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.filter-btn.active .filter-count {
+    background-color: rgba(255, 255, 255, 0.25);
+    color: #ffffff;
+}
+
 .todo-list {
     list-style: none;
     margin: 0;
@@ -222,18 +242,53 @@ body {
     gap: 10px;
     padding: 12px 4px;
     border-bottom: 1px solid var(--color-border);
+    transition: background-color 0.2s ease;
+    transform-origin: top;
+}
+
+.todo-item.pulse {
+    animation: todoPulse 0.5s ease;
+}
+
+.todo-item.removing {
+    animation: todoRemove 0.25s ease forwards;
+    pointer-events: none;
+}
+
+@keyframes todoPulse {
+    0% { background-color: rgba(79, 70, 229, 0.14); }
+    100% { background-color: transparent; }
+}
+
+@keyframes todoRemove {
+    to {
+        opacity: 0;
+        transform: translateX(16px) scale(0.97);
+    }
+}
+
+.todo-label {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex: 1;
+    min-width: 0;
+    cursor: pointer;
 }
 
 .todo-check {
     width: 18px;
     height: 18px;
+    flex-shrink: 0;
     accent-color: var(--color-primary);
     cursor: pointer;
 }
 
 .todo-text {
     flex: 1;
+    min-width: 0;
     font-size: 0.95rem;
+    transition: color 0.2s ease;
 }
 
 .todo-item.done .todo-text {
@@ -241,6 +296,14 @@ body {
     color: var(--color-text-muted);
 }
 
+.todo-actions {
+    display: flex;
+    align-items: center;
+    gap: 2px;
+    flex-shrink: 0;
+}
+
+.todo-edit,
 .todo-delete {
     border: none;
     background: none;
@@ -250,22 +313,98 @@ body {
     padding: 4px 6px;
 }
 
+.todo-edit:hover {
+    color: var(--color-primary);
+}
+
 .todo-delete:hover {
     color: var(--color-accent);
 }
 
+.todo-item.editing {
+    gap: 8px;
+}
+
+.todo-edit-input {
+    flex: 1;
+    min-width: 0;
+    padding: 8px 10px;
+    border: 1px solid var(--color-primary);
+    border-radius: 8px;
+    font-size: 0.95rem;
+    background-color: var(--color-bg);
+    color: var(--color-text);
+}
+
+.todo-save,
+.todo-cancel {
+    border: none;
+    border-radius: 8px;
+    padding: 7px 10px;
+    font-size: 0.8rem;
+    font-weight: 600;
+    cursor: pointer;
+}
+
+.todo-save {
+    background-color: var(--color-primary);
+    color: #ffffff;
+}
+
+.todo-cancel {
+    background-color: var(--color-border);
+    color: var(--color-text);
+}
+
 .empty {
-    margin: 16px 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+    margin: 28px 0;
     text-align: center;
-    font-size: 0.88rem;
     color: var(--color-text-muted);
 }
 
+.empty[hidden] {
+    display: none;
+}
+
+.empty-icon {
+    color: var(--color-text-muted);
+}
+
+.empty-text {
+    margin: 0;
+    font-size: 0.88rem;
+}
+
 .todo-summary {
-    margin-top: 16px;
+    margin: 16px 0 0;
     padding-top: 12px;
     border-top: 1px solid var(--color-border);
     font-size: 0.85rem;
     color: var(--color-text-muted);
     text-align: right;
+}
+
+.site-footer {
+    width: 100%;
+    margin-top: auto;
+    background-color: #1a1a1a;
+    color: #cccccc;
+    text-align: center;
+    padding: 32px 20px;
+    font-size: 13px;
+}
+
+.site-footer .footer-brand {
+    color: #ffffff;
+    font-size: 16px;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+
+.site-footer .footer-note {
+    margin-bottom: 8px;
 }
